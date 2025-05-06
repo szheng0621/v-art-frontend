@@ -48,15 +48,15 @@ const UserExhibitions = () => {
   if (!user) return <p>Please log in.</p>;
 
   return (
-    <div className="container mx-auto p-8">
+    <div className="ccontainer mx-auto p-4 md:p-8">
       <h2 className="text-xl">{user.username}'s Exhibition</h2>
 
       
-      <div className="flex items-center space-x-2 mb-4 mt-6">
+      <div className="flex flex-col md:flex-row md:items-center md:space-x-4 space-y-4 md:space-y-0 mb-6 mt-6">
         <select
           value={filters.collection}
           onChange={(e) => setFilters({ ...filters, collection: e.target.value })}
-          className="border rounded px-2 py-1 border-gray-200"
+          className="border rounded px-2 py-1 border-gray-200 w-full md:w-auto"
         >
           <option value="All">All Collections</option>
           <option value="painting">Painting</option>
@@ -70,7 +70,7 @@ const UserExhibitions = () => {
         <select
           value={filters.sort_by}
           onChange={(e) => setFilters({ ...filters, sort_by: e.target.value })}
-          className="border rounded px-2 py-1 border-gray-200 ml-6"
+          className="border rounded px-2 py-1 border-gray-200 w-full md:w-auto"
         >
           <option value="title">Title</option>
           <option value="created_at">Created At</option>
@@ -79,21 +79,21 @@ const UserExhibitions = () => {
         <select
           value={filters.order}
           onChange={(e) => setFilters({ ...filters, order: e.target.value })}
-          className="border rounded px-2 py-1 border-gray-200 ml-6"
+          className="border rounded px-2 py-1 border-gray-200 w-full md:w-auto"
         >
           <option value="asc">Asc</option>
           <option value="desc">Desc</option>
         </select>
 
-        {/* Button to view all artworks */}
-<div className="ml-6">
+        
+
         <Link
           to="/artworks"
-          className="inline-block px-4 py-2 bg-rose-500 text-white rounded hover:bg-rose-600"
+          className="inline-block px-4 py-2 bg-rose-500 text-white rounded hover:bg-rose-600 text-center w-full md:w-auto"
         >
           View All Artworks
         </Link>
-      </div>
+      
       </div>
 
 
