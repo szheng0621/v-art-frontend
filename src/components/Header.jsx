@@ -1,10 +1,11 @@
 import React from "react";
 import bannerImage from "../assets/images/home-page-banner.png";
+import { Link } from "react-router-dom";
 
 const navItems = [
-  { name: "Art Discovery", href: "/" },
-  { name: "Collections", href: "/collections" },
-  { name: "My Exhibitions", href: "/login" },
+  { name: "Art Discovery", to: "/" },
+  { name: "Collections", to: "/collections" },
+  { name: "My Exhibitions", to: "/login" },
   // { name: "Shop", href: "/shop" },
 ];
 
@@ -19,25 +20,25 @@ const Header = () => {
 
           <nav>
             <ul className="flex flex-col md:flex-row md:space-x-8 items-center space-y-2 md:space-y-0">
-              {navItems.map((item) => (
-                <li key={item.name}>
-                  <a
-                    href={item.href}
-                    className="text-black capitalize text-lg md:text-xl tracking-wider hover:text-gray-600 transition-colors"
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              ))}
+            {navItems.map((item) => (
+  <li key={item.name}>
+    <Link
+      to={item.to}
+      className="text-black capitalize text-xl tracking-wider hover:text-gray-600 transition-colors"
+    >
+      {item.name}
+    </Link>
+  </li>
+))}
             </ul>
           </nav>
 
-          <a
-            href="/login"
-            className="bg-rose-500 text-white capitalize text-lg md:text-xl px-4 py-2 rounded transition-colors"
-          >
-            Login
-          </a>
+          <Link
+  to="/login"
+  className="bg-rose-500 text-white capitalize text-lg md:text-xl px-4 py-2 rounded transition-colors"
+>
+  Login
+</Link>
         </div>
       </header>
 
