@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap");
+
+@import "tailwindcss";
+
+
+:root {
+  --font-sora: "Sora", sans-serif;
+  --font-code: "Source Code Pro", monospace;
+  --font-grotesk: "Space Grotesk", sans-serif;
+}
+
+* {
+  scroll-behavior: smooth
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: hwb(240 38% 59%);
+  }
+  /* button {
+    background-color: #f9f9f9;
+  } */
+}
+
+/* collection grid layout */
+
+.collection-grid {
+  display: grid !important;
+  grid-template-columns: repeat(6, 1fr) ;
+  grid-template-rows: repeat(3, 1fr) ;
+  gap: 2px ;
+  padding: 8px ;
+}
+
+.collection-box {
+  position: relative;
+  height: 400px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+.collection-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.collection-box:hover::before {
+  background: rgba(0, 0, 0, 0);
+}
+
+.collection-text {
+  position: relative;
+  z-index: 2;
+  bottom: 12px;
+  left: 12px;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.collection-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.collection-description {
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin-top: 4px;
+  opacity: 0.85;
+}
+
+.painting {
+  background-image: url("./assets/bg/painting.jpg");
+  grid-column: 1 / span 5;
+  grid-row: 1 / span 1;
+}
+
+.manuscript {
+  background-image: url("./assets/bg/manuscript.jpg");
+  grid-column: 6 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.sculpture {
+  background-image: url("./assets/bg/sculpture.jpg");
+  grid-column: 1 / span 3;
+  grid-row: 2 / span 1;
+}
+
+.photography {
+  background-image: url("./assets/bg/photography.jpg");
+  grid-column: 4 / span 3;
+  grid-row: 2 / span 1;
+}
+
+.installation {
+  background-image: url("./assets/bg/installation.jpg");
+  grid-column: 1 / span 3;
+  grid-row: 3 / span 1;
+}
+
+.misc {
+  background-image: url("./assets/bg/misc.jpg");
+  grid-column: 4 / span 3;
+  grid-row: 3 / span 1;
+}
+
+@media (max-width: 640px) {
+  .collection-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+
+  .collection-box {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    height: 300px;
+  }
+}
+
