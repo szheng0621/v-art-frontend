@@ -2,14 +2,15 @@ import { useParams } from "react-router-dom";
 import { getArtworksByCollection } from "../apiCall";
 import ArtworkCard from "./ArtworkCard";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const navItems = [
-  { name: "painting", href: "/collections/painting" },
-  { name: "photography", href: "/collections/photography" },
-  { name: "sculpture", href: "/collections/sculpture" },
-  { name: "installation", href: "/collections/installation" },
-  { name: "manuscript", href: "/collections/manuscript" },
-  { name: "misc", href: "/collections/misc" },
+  { name: "painting", to: "/collections/painting" },
+  { name: "photography", to: "/collections/photography" },
+  { name: "sculpture", to: "/collections/sculpture" },
+  { name: "installation", to: "/collections/installation" },
+  { name: "manuscript", to: "/collections/manuscript" },
+  { name: "misc", to: "/collections/misc" },
 ];
 
 const ArtworksByCollection = () => {
@@ -76,14 +77,14 @@ const ArtworksByCollection = () => {
         <ul className="flex flex-wrap gap-4">
           {navItems.map((item) => (
             <li key={item.name}>
-              <a
-                href={item.href}
+              <Link
+                to={item.to}
                 className={`capitalize text-base sm:text-lg tracking-wide hover:text-gray-600 transition-colors ${
                   item.name === collection ? "font-semibold underline" : ""
                 }`}
               >
                 {item.name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

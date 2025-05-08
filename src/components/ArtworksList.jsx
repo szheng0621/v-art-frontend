@@ -4,7 +4,7 @@ import ArtworkCard from "./ArtworkCard";
 import { UserContext } from "../context/userContext";
 import { Link } from "react-router-dom";
 
-export default function ArtworksList() {
+export default function ArtworksList({ search = "" }) {
   const [artworks, setArtworks] = useState([]);
   const [sortBy, setSortBy] = useState("created_at");
   const [order, setOrder] = useState("desc");
@@ -14,6 +14,8 @@ export default function ArtworksList() {
   const [limit] = useState(9);
   const { user } = useContext(UserContext);
   const [isPosting, setIsPosting] = useState(false);
+
+  console.log("Search term:", search);
 
   useEffect(() => {
     setError(null);
@@ -51,7 +53,6 @@ export default function ArtworksList() {
         alert("Failed to add artwork to your favourites.");
       });
   };
-  
 
   const handleSorting = (event) => {
     setSortBy(event.target.value);
@@ -68,7 +69,7 @@ export default function ArtworksList() {
   if (error) {
     return <p className="text-red-500">Error: {error.message}</p>;
   }
-
+  console.log("All artworks before filtering:", artworks);
   return (
     <section>
       <div className="container mx-auto flex flex-wrap items-center mb-4 space-x-4 mt-6">
@@ -98,30 +99,41 @@ export default function ArtworksList() {
             <option value="desc">Descending</option>
           </select>
 
-          
-      {user && (
-        <div className="ml-6">
-          <Link
-            to={`/users/${user.username}/exhibitions`}
-            className="inline-block px-4 py-2 bg-rose-500 text-white rounded hover:bg-rose-600"
-          >
-            ← Back to My Exhibition
-          </Link>
-        </div>
-      )}
-
+          {user && (
+            <div className="ml-6">
+              <Link
+                to={`/users/${user.username}/exhibitions`}
+                className="inline-block px-4 py-2 bg-rose-500 text-white rounded hover:bg-rose-600"
+              >
+                ← Back to My Exhibition
+              </Link>
+            </div>
+          )}
         </div>
       </div>
 
       <ul className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {artworks.map((artwork) => (
-          <ArtworkCard
-            key={artwork.artwork_id}
-            artwork={artwork}
-            username={user?.username}
-            onAddToFavourites={handleAddToFavourites}
-          />
-        ))}
+        {artworks
+          .filter((artwork) => {
+            if (!artwork) {
+              return false;
+            }
+            const lowerSearch = (search || "").toLowerCase();
+
+            return (
+              artwork.title?.toLowerCase().includes(lowerSearch) ||
+              artwork.artist?.toLowerCase().includes(lowerSearch) ||
+              artwork.collection?.toLowerCase().includes(lowerSearch)
+            );
+          })
+          .map((artwork) => (
+            <ArtworkCard
+              key={artwork.artwork_id}
+              artwork={artwork}
+              username={user?.username}
+              onAddToFavourites={handleAddToFavourites}
+            />
+          ))}
       </ul>
 
       <div className="pagination-controls flex gap-4 mt-8 my-10 justify-center">

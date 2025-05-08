@@ -21,7 +21,7 @@ export default function ArtworkCard(props) {
 
   const handleDelete = () => {
     if (!username || !exhibitionId || !artwork.artwork_id) {
-      console.warn("Missing required data to delete artwork.");
+      
       return;
     }
 
@@ -57,7 +57,7 @@ export default function ArtworkCard(props) {
           <p className="text-sm text-gray-600 pl-6">
             {artwork.artist || "Unknown Artist"}
           </p>
-          
+
           <div className="ml-6">  
           {username && exhibitionTitle && (
             <p className="text-xs italic text-gray-500">
