@@ -4,11 +4,10 @@ import ArtworksList from "./ArtworksList";
 
 export default function Home() {
   const [search, setSearch] = useState("");
-  
+
   return (
     <div className="container mx-auto mt-6 px-6">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-  
         <div>
           <h2 className="text-black text-4xl font-black">Welcome</h2>
           <h3 className="text-black text-xl font-bold mt-2">
@@ -26,14 +25,14 @@ export default function Home() {
               id="site-search"
               name="search"
               type="search"
-              placeholder="Search by title"
+              placeholder="Search Artworks"
               onChange={(e) => setSearch(e.target.value)}
               className="w-full md:w-84 pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
           </div>
         </form>
       </div>
-      <ArtworksList search={search}/>
+      <ArtworksList search={search} />
     </div>
   );
 }
