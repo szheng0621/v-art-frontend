@@ -29,6 +29,7 @@ npm install
 npm run dev
 
 🔐 Login to Access Exhibitions
+the site is hosted with Netlify, to view the site, please go to https://v-art-gallery.netlify.app/
 Use the following dummy credentials to access personal exhibition features:
 
 Username: happyamy2016
